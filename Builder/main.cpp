@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-struct HtmlBuilder;
+class HtmlBuilder;
 
 // Defining the HtmlElement class
 class HtmlElement
@@ -152,6 +152,21 @@ class HtmlBuilder
         return this;
     }
 
+    // Method to remove a child element with the specified name
+    HtmlBuilder &removeChildByRef(std::string childName)
+    {
+        for (auto it = root.elements.begin(); it != root.elements.end();)
+        {
+            if ((*it).getName() == childName)
+            {
+                root.elements.erase(it);
+                break;
+            }
+            it++;
+        }
+        return *this;
+    }
+
     // Method to get the HTML string representation of the root element
     std::string str()
     {
@@ -190,7 +205,10 @@ int main()
 
     // Example of using the HtmlBuilder class
     HtmlBuilder builder{"ul"};
-    builder.addChildByRef("li", "hello").addChildByRef("li", "world");
+    builder.addChildByRef("li", "hello")
+        .addChildByRef("li", "world")
+        .removeChildByRef("li")
+        .addChildByRef("h4", "New Elements");
     std::cout << builder.str() << std::endl;
 
     // Example of using the HtmlBuilder::build() method
