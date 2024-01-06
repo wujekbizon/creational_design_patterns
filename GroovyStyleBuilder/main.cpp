@@ -91,6 +91,24 @@ class IMG : public Tag
     }
 };
 
+/*
+Simplifying Data Structure Construction with Implicit Conversion in C++
+
+In C++, the std::initializer_list container can hold either individual
+elements or lists of elements. This flexibility allows for concise and
+efficient code when constructing data structures. One interesting aspect
+of std::initializer_list is its ability to implicitly convert a single
+reference into a list of references with one element. This feature
+simplifies the syntax and makes it easier to work with data structures.
+For instance, consider the following code snippet:
+IMG img{ "http://pokemon.com/pikachu.png" };
+Here, we're creating an IMG object and passing a single reference to a
+URL string. The compiler implicitly converts this single reference into
+a list of references, effectively creating a one-element list.
+This allows us to construct the image tag without the need for explicit
+list creation and element insertion.
+*/
+
 int main()
 {
     // Construct a paragraph tag with an embedded image tag
